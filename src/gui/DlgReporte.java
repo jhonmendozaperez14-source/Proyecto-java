@@ -9,6 +9,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
+import clases.Alumno;
+import controlador.ArregloAlumnos;
 
 public class DlgReporte extends JDialog {
 
@@ -59,11 +61,50 @@ public class DlgReporte extends JDialog {
         btnRetiros.addActionListener(e -> reporteRetiros());
     }
 
-    private void reporteAlumnos() {
-        txtSalida.setText(
-                "REPORTE DE ALUMNOS\n\n"
-              + "Aquí aparecerán los alumnos registrados");
-    }
+    private void reporteAlumnos() {	
+    	ArregloAlumnos aa = new ArregloAlumnos();
+
+    	int registrados = 0;
+    	int matriculados = 0;
+    	int retirados = 0;
+
+    	txtSalida.setText("");
+
+    	imprimir("========================================");
+    	imprimir("         REPORTE DE ALUMNOS");
+    	imprimir("========================================");
+    	imprimir();
+
+    	for(int i = 0; i < aa.tamanio(); i++) {
+
+    	    Alumno a = aa.obtener(i);
+
+    	    if(a.getEstado() == Alumno.REGISTRADO)
+    	        registrados++;
+
+    	    if(a.getEstado() == Alumno.MATRICULADO)
+    	        matriculados++;
+
+    	    if(a.getEstado() == Alumno.RETIRADO)
+    	        retirados++;
+
+    	    imprimir("Código    : " + a.getCodAlumno());
+    	    imprimir("Nombres   : " + a.getNombres());
+    	    imprimir("Apellidos : " + a.getApellidos());
+    	    imprimir("Estado    : " + a.getEstadoTexto());
+    	    imprimir("----------------------------------------");
+    	}
+
+    	imprimir();
+    	imprimir("RESUMEN GENERAL");
+    	imprimir("----------------------------------------");
+    	imprimir("Cantidad total de alumnos : " + aa.tamanio());
+    	imprimir("Alumnos registrados       : " + registrados);
+    	imprimir("Alumnos matriculados      : " + matriculados);
+    	imprimir("Alumnos retirados         : " + retirados);
+    	imprimir("========================================");
+    	}
+    
 
     private void reporteCursos() {
         txtSalida.setText(
@@ -82,4 +123,14 @@ public class DlgReporte extends JDialog {
                 "REPORTE DE RETIROS\n\n"
               + "Aquí aparecerán los retiros registrados");
     }
+    
+    //clase imprimir
+    private void imprimir() {
+        txtSalida.append("\n");
+    }
+
+    private void imprimir(String s) {
+        txtSalida.append(s + "\n");
+    }
+    
 }
