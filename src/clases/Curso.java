@@ -5,14 +5,14 @@ public class Curso {
     private int codCurso;
     private String asignatura;
     private int ciclo; 
-    private int créditos;
+    private int creditos;
     private int horas;
 
-    public Curso(int codCurso, String asignatura, int ciclo, int créditos, int horas) {
+    public Curso(int codCurso, String asignatura, int ciclo, int creditos, int horas) {
         this.codCurso = codCurso;
         this.asignatura = asignatura;
         this.ciclo = ciclo;
-        this.créditos = créditos;
+        this.creditos = creditos;
         this.horas = horas;
     }
 
@@ -40,12 +40,12 @@ public class Curso {
         this.ciclo = ciclo;
     }
 
-    public int getCréditos() {
-        return créditos;
+    public int getCreditos() {
+        return creditos;
     }
 
-    public void setCréditos(int créditos) {
-        this.créditos = créditos;
+    public void setCreditos(int créditos) {
+        this.creditos = créditos;
     }
 
     public int getHoras() {

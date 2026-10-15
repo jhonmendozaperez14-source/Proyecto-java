@@ -195,7 +195,7 @@ public class DlgCurso extends JDialog implements ActionListener, MouseListener {
             if (c != null) {
                 txtAsignatura.setText(c.getAsignatura());
                 cboCiclo.setSelectedIndex(c.getCiclo());
-                txtCréditos.setText(String.valueOf(c.getCréditos()));
+                txtCréditos.setText(String.valueOf(c.getCreditos()));
                 txtHoras.setText(String.valueOf(c.getHoras()));
             } else {
                 mensaje("Curso no encontrado.");
@@ -212,9 +212,9 @@ public class DlgCurso extends JDialog implements ActionListener, MouseListener {
             if (c != null) {
                 c.setAsignatura(txtAsignatura.getText().trim());
                 c.setCiclo(cboCiclo.getSelectedIndex());
-                c.setCréditos(Integer.parseInt(txtCréditos.getText().trim()));
+                c.setCreditos(Integer.parseInt(txtCréditos.getText().trim()));
                 c.setHoras(Integer.parseInt(txtHoras.getText().trim()));
-                ac.actualizarArchivo();
+                ac.grabarCursos();
                 listar();
                 limpiar();
                 mensaje("Curso modificado con éxito.");
@@ -259,7 +259,7 @@ public class DlgCurso extends JDialog implements ActionListener, MouseListener {
                 c.getCodCurso(),
                 c.getAsignatura(),
                 obtenerNombreCiclo(c.getCiclo()),
-                c.getCréditos(),
+                c.getCreditos(),
                 c.getHoras()
             };
             model.addRow(fila);
@@ -301,7 +301,7 @@ public class DlgCurso extends JDialog implements ActionListener, MouseListener {
                 if (c != null) {
                     txtAsignatura.setText(c.getAsignatura());
                     cboCiclo.setSelectedIndex(c.getCiclo());
-                    txtCréditos.setText(String.valueOf(c.getCréditos()));
+                    txtCréditos.setText(String.valueOf(c.getCreditos()));
                     txtHoras.setText(String.valueOf(c.getHoras()));
                 }
             } catch (Exception ex) {
