@@ -1,6 +1,7 @@
 package clases;
 
 public class Alumno {
+	
 	// Estados del alumno
 	public static final int REGISTRADO = 0;
 	public static final int MATRICULADO = 1;
