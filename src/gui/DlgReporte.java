@@ -11,6 +11,8 @@ import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
 import clases.Alumno;
 import controlador.ArregloAlumnos;
+import clases.Curso;
+import controlador.ArregloCursos;
 
 public class DlgReporte extends JDialog {
 
@@ -107,9 +109,32 @@ public class DlgReporte extends JDialog {
     
 
     private void reporteCursos() {
-        txtSalida.setText(
-                "REPORTE DE CURSOS\n\n"
-              + "Aquí aparecerán los cursos registrados");
+    	ArregloCursos ac = new ArregloCursos();
+        txtSalida.setText("");
+
+        imprimir("========================================");
+        imprimir("          REPORTE DE CURSOS");
+        imprimir("========================================");
+        imprimir();
+
+        for (int i = 0; i < ac.tamanio(); i++) {
+
+            Curso c = ac.obtener(i);
+
+            imprimir("Código     : " + c.getCodCurso());
+            imprimir("Asignatura : " + c.getAsignatura());
+            imprimir("Ciclo      : " + c.getCiclo());
+            imprimir("Créditos   : " + c.getCreditos());
+            imprimir("Horas      : " + c.getHoras());
+
+            imprimir("----------------------------------------");
+        }
+
+        imprimir();
+        imprimir("RESUMEN GENERAL");
+        imprimir("----------------------------------------");
+        imprimir("Cantidad total de cursos : " + ac.tamanio());
+        imprimir("========================================");
     }
 
     private void reporteMatriculas() {
