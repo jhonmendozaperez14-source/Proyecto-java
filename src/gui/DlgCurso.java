@@ -232,10 +232,11 @@ public class DlgCurso extends JDialog implements ActionListener, MouseListener {
             Curso c = ac.buscar(cod);
             if (c != null) {
                 
-                if (am.existeMatriculaConCurso(cod)) {
-                    mensaje("No se puede eliminar el curso, hay alumnos matriculados en él.");
-                    return;
-                }
+            	if (am.existeCursoMatriculado(cod)) {
+            	    mensaje("No se puede eliminar el curso, hay alumnos matriculados en él.");
+            	    return;
+            	}
+            	
                 int opcion = JOptionPane.showConfirmDialog(this, "¿Está seguro de eliminar el curso?", "Sistema", JOptionPane.YES_NO_OPTION);
                 if (opcion == JOptionPane.YES_OPTION) {
                     ac.eliminar(c);
