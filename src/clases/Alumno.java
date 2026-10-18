@@ -1,15 +1,11 @@
 package clases;
 
 public class Alumno {
-<<<<<<< HEAD
- public int hora;
- public int minuto;
-=======
+	
 	// Estados del alumno
 	public static final int REGISTRADO = 0;
 	public static final int MATRICULADO = 1;
 	public static final int RETIRADO = 2;
->>>>>>> branch 'master' of https://github.com/jhonmendozaperez14-source/Proyecto-java.git
 
 	// Atributos privados
 	private int codAlumno;
