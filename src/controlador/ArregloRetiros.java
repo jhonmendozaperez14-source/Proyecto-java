@@ -6,6 +6,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import clases.Retiro;
 
 // Arreglo de retiros: ArrayList + archivo retiros.txt
@@ -72,7 +73,8 @@ public class ArregloRetiros {
 			}
 			pw.close();
 		} catch (Exception e) {
-			System.out.println("Error al grabar retiros: " + e.getMessage());
+			JOptionPane.showMessageDialog(null, "Error al grabar retiros: " + e.getMessage(), "Error",
+					JOptionPane.ERROR_MESSAGE);
 		}
 	}
 
@@ -92,7 +94,8 @@ public class ArregloRetiros {
 			}
 			br.close();
 		} catch (Exception e) {
-			System.out.println("Error al cargar retiros: " + e.getMessage());
+			JOptionPane.showMessageDialog(null, "Error al cargar retiros: " + e.getMessage(), "Error",
+					JOptionPane.ERROR_MESSAGE);
 		}
 	}
 }
