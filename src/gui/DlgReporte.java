@@ -1,7 +1,6 @@
 package gui;
 
 import java.awt.BorderLayout;
-import java.awt.FlowLayout;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -9,10 +8,13 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
+
 import clases.Alumno;
-import controlador.ArregloAlumnos;
 import clases.Curso;
+import clases.Matricula;
+import controlador.ArregloAlumnos;
 import controlador.ArregloCursos;
+import controlador.ArregloMatricula;
 
 public class DlgReporte extends JDialog {
 
@@ -32,124 +34,98 @@ public class DlgReporte extends JDialog {
     }
 
     public DlgReporte() {
-
         setTitle("Reportes");
         setBounds(100, 100, 700, 500);
-
         getContentPane().setLayout(new BorderLayout());
 
         contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
         getContentPane().add(contentPanel, BorderLayout.NORTH);
 
-        JButton btnAlumnos = new JButton("Alumnos");
-        JButton btnCursos = new JButton("Cursos");
-        JButton btnMatriculas = new JButton("Matriculas");
-        JButton btnRetiros = new JButton("Retiros");
+        JButton btnPendientes = new JButton("Matrícula pendiente");
+        JButton btnVigentes = new JButton("Matrícula vigente");
+        JButton btnPorCurso = new JButton("Matriculados por curso");
 
-        contentPanel.add(btnAlumnos);
-        contentPanel.add(btnCursos);
-        contentPanel.add(btnMatriculas);
-        contentPanel.add(btnRetiros);
+        contentPanel.add(btnPendientes);
+        contentPanel.add(btnVigentes);
+        contentPanel.add(btnPorCurso);
 
         txtSalida = new JTextArea();
         txtSalida.setEditable(false);
+        getContentPane().add(new JScrollPane(txtSalida), BorderLayout.CENTER);
 
-        JScrollPane scrollPane = new JScrollPane(txtSalida);
-        getContentPane().add(scrollPane, BorderLayout.CENTER);
-
-        btnAlumnos.addActionListener(e -> reporteAlumnos());
-        btnCursos.addActionListener(e -> reporteCursos());
-        btnMatriculas.addActionListener(e -> reporteMatriculas());
-        btnRetiros.addActionListener(e -> reporteRetiros());
+        btnPendientes.addActionListener(e -> reportePendientes());
+        btnVigentes.addActionListener(e -> reporteVigentes());
+        btnPorCurso.addActionListener(e -> reportePorCurso());
     }
 
-    private void reporteAlumnos() {	
-    	ArregloAlumnos aa = new ArregloAlumnos();
-
-    	int registrados = 0;
-    	int matriculados = 0;
-    	int retirados = 0;
-
-    	txtSalida.setText("");
-
-    	imprimir("========================================");
-    	imprimir("         REPORTE DE ALUMNOS");
-    	imprimir("========================================");
-    	imprimir();
-
-    	for(int i = 0; i < aa.tamanio(); i++) {
-
-    	    Alumno a = aa.obtener(i);
-
-    	    if(a.getEstado() == Alumno.REGISTRADO)
-    	        registrados++;
-
-    	    if(a.getEstado() == Alumno.MATRICULADO)
-    	        matriculados++;
-
-    	    if(a.getEstado() == Alumno.RETIRADO)
-    	        retirados++;
-
-    	    imprimir("Código    : " + a.getCodAlumno());
-    	    imprimir("Nombres   : " + a.getNombres());
-    	    imprimir("Apellidos : " + a.getApellidos());
-    	    imprimir("Estado    : " + a.getEstadoTexto());
-    	    imprimir("----------------------------------------");
-    	}
-
-    	imprimir();
-    	imprimir("RESUMEN GENERAL");
-    	imprimir("----------------------------------------");
-    	imprimir("Cantidad total de alumnos : " + aa.tamanio());
-    	imprimir("Alumnos registrados       : " + registrados);
-    	imprimir("Alumnos matriculados      : " + matriculados);
-    	imprimir("Alumnos retirados         : " + retirados);
-    	imprimir("========================================");
-    	}
+    //Cada botón llama a un método que hace el trabajo
     
+    private void reportePendientes() {
+        listarAlumnosPorEstado(Alumno.REGISTRADO, "ALUMNOS CON MATRÍCULA PENDIENTE");
+    }
 
-    private void reporteCursos() {
-    	ArregloCursos ac = new ArregloCursos();
+    private void reporteVigentes() {
+        listarAlumnosPorEstado(Alumno.MATRICULADO, "ALUMNOS CON MATRÍCULA VIGENTE");
+    }
+
+    private void listarAlumnosPorEstado(int estado, String titulo) {
+        ArregloAlumnos aa = new ArregloAlumnos();
+
         txtSalida.setText("");
+        imprimir(titulo);
+        imprimir("========================================");
 
+        //imprime los alumnos con el estado pedido
+        
+        int cont = 0;
+        for (int i = 0; i < aa.tamanio(); i++) {
+            Alumno a = aa.obtener(i);
+            
+            if (a.getEstado() == estado) {
+                imprimir("Código    : " + a.getCodAlumno());
+                imprimir("Nombres   : " + a.getNombres());
+                imprimir("Apellidos : " + a.getApellidos());
+                imprimir("DNI       : " + a.getDni());
+                imprimir("Edad      : " + a.getEdad());
+                imprimir("Celular   : " + a.getCelular());
+                imprimir("Estado    : " + a.getEstadoTexto());
+                imprimir("----------------------------------------");
+                //cuenta cuantos salieron
+                cont++;
+            }
+        }
+        if (cont == 0) imprimir("No hay alumnos en este estado.");
+    }
+
+    private void reportePorCurso() {
+        ArregloCursos ac = new ArregloCursos();
+        ArregloMatricula am = new ArregloMatricula();
+        ArregloAlumnos aa = new ArregloAlumnos();
+
+        txtSalida.setText("");
+        imprimir("ALUMNOS MATRICULADOS POR CURSO");
         imprimir("========================================");
-        imprimir("          REPORTE DE CURSOS");
-        imprimir("========================================");
-        imprimir();
 
         for (int i = 0; i < ac.tamanio(); i++) {
-
             Curso c = ac.obtener(i);
+            imprimir("CURSO: " + c.getCodCurso() + " - " + c.getAsignatura());
 
-            imprimir("Código     : " + c.getCodCurso());
-            imprimir("Asignatura : " + c.getAsignatura());
-            imprimir("Ciclo      : " + c.getCiclo());
-            imprimir("Créditos   : " + c.getCreditos());
-            imprimir("Horas      : " + c.getHoras());
-
+            int cont = 0;
+            for (int j = 0; j < am.tamanio(); j++) {
+                Matricula m = am.obtener(j);
+                if (m.getCodCurso() == c.getCodCurso()) {
+                    Alumno a = aa.buscar(m.getCodAlumno());
+                    if (a != null && a.getEstado() == Alumno.MATRICULADO) {
+                        imprimir("   - " + a.getNombres() + " " + a.getApellidos());
+                        cont++;
+                    }
+                }
+            }
+            if (cont == 0) imprimir("   (sin alumnos matriculados)");
             imprimir("----------------------------------------");
         }
-
-        imprimir();
-        imprimir("RESUMEN GENERAL");
-        imprimir("----------------------------------------");
-        imprimir("Cantidad total de cursos : " + ac.tamanio());
-        imprimir("========================================");
     }
 
-    private void reporteMatriculas() {
-        txtSalida.setText(
-                "REPORTE DE MATRÍCULAS\n\n"
-              + "Aquí aparecerán las matrículas registradas");
-    }
-
-    private void reporteRetiros() {
-        txtSalida.setText(
-                "REPORTE DE RETIROS\n\n"
-              + "Aquí aparecerán los retiros registrados");
-    }
-    
-    //clase imprimir
     private void imprimir() {
         txtSalida.append("\n");
     }
@@ -157,5 +133,4 @@ public class DlgReporte extends JDialog {
     private void imprimir(String s) {
         txtSalida.append(s + "\n");
     }
-    
 }
