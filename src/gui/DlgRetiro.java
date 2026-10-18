@@ -24,7 +24,7 @@ import clases.Matricula;
 import clases.Retiro;
 import controlador.ArregloAlumnos;
 import controlador.ArregloCursos;
-import controlador.ArregloMatriculas;
+import controlador.ArregloMatricula;
 import controlador.ArregloRetiros;
 
 // Registro | Retiro
@@ -54,7 +54,7 @@ public class DlgRetiro extends JDialog implements ActionListener {
 
 	// Arreglos (cada uno carga su archivo .txt al crearse)
 	private ArregloRetiros ar = new ArregloRetiros();
-	private ArregloMatriculas am = new ArregloMatriculas();
+	private ArregloMatricula am = new ArregloMatricula();
 	private ArregloAlumnos aa = new ArregloAlumnos();
 	private ArregloCursos ac = new ArregloCursos();
 

@@ -16,7 +16,7 @@ import java.awt.event.MouseEvent;
 
 import clases.Curso;
 import controlador.ArregloCursos;
-import controlador.ArregloMatriculas;
+import controlador.ArregloMatricula;
 
 public class DlgCurso extends JDialog implements ActionListener, MouseListener {
 
@@ -30,7 +30,7 @@ public class DlgCurso extends JDialog implements ActionListener, MouseListener {
     private JScrollPane scrollPane;
 
     private ArregloCursos ac = new ArregloCursos();
-    private ArregloMatriculas am = new ArregloMatriculas(); 
+    private ArregloMatricula am = new ArregloMatricula(); 
 
     public static void main(String[] args) {
         try {

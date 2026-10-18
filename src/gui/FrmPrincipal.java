@@ -191,7 +191,7 @@ public class FrmPrincipal extends JFrame implements ActionListener {
 	}
 
 	protected void actionPerformedMntmMatricula(ActionEvent e) {
-		DlgMatricula dlg = new DlgMatricula();
+		DlgMatricula dlg = new DlgMatricula(this, true);
 		dlg.setLocationRelativeTo(this);
 		dlg.setVisible(true);
 	}

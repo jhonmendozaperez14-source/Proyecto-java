@@ -11,9 +11,9 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
-import controlador.ControladorBase;
+import controlador.ArregloMatricula;
 
-public class DlgRegistroMatricula extends JDialog implements ActionListener {
+public class DlgMatricula extends JDialog implements ActionListener {
 
     private static final long serialVersionUID = 1L;
 
@@ -49,12 +49,15 @@ public class DlgRegistroMatricula extends JDialog implements ActionListener {
     private JTable tblMatriculas;
     private DefaultTableModel modeloTabla;
 
-    private ControladorBase controlador;
+    private ArregloMatricula am;
     private int tipoOperacion;
 
-    public DlgRegistroMatricula(Frame padre, boolean modal, ControladorBase controlador) {
+
+
+
+    public DlgMatricula(Frame padre, boolean modal) {
         super(padre, modal);
-        this.controlador = controlador;
+        am = new ArregloMatricula();
 
         setTitle("Registro - Matrícula");
         setBounds(100, 100, 700, 440);
@@ -171,7 +174,7 @@ public class DlgRegistroMatricula extends JDialog implements ActionListener {
         Object fuente = e.getSource();
         if (fuente == btnAdicionar) {
             prepararOperacion(ADICIONAR);
-            txtNumMatricula.setText(String.valueOf(controlador.generarNumeroMatricula()));
+            txtNumMatricula.setText(String.valueOf(am.codigoCorrelativo()));
         } else if (fuente == btnConsultar) {
             prepararOperacion(CONSULTAR);
         } else if (fuente == btnModificar) {
@@ -233,4 +236,3 @@ public class DlgRegistroMatricula extends JDialog implements ActionListener {
         txtHora.setText("");
     }
 }
-
