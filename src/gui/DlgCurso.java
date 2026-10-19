@@ -231,9 +231,7 @@ public class DlgCurso extends JDialog implements ActionListener, MouseListener {
             int cod = Integer.parseInt(txtCodCurso.getText().trim());
             Curso c = ac.buscar(cod);
             if (c != null) {
-                
-<<<<<<< HEAD
-=======
+
 
             	if (am.existeCursoMatriculado(cod)) {
             	    mensaje("No se puede eliminar el curso, hay alumnos matriculados en él.");
@@ -241,7 +239,7 @@ public class DlgCurso extends JDialog implements ActionListener, MouseListener {
             	}
             	
 
->>>>>>> branch 'master' of https://github.com/jhonmendozaperez14-source/Proyecto-java.git
+
                 if (am.existeCursoMatriculado(cod)) {
                     mensaje("No se puede eliminar el curso, hay alumnos matriculados en él.");
                     return;
