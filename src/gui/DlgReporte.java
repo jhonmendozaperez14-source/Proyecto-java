@@ -106,10 +106,10 @@ public class DlgReporte extends JDialog {
         imprimir("ALUMNOS MATRICULADOS POR CURSO");
         imprimir("========================================");
 
+        //une a cada alumno con su curso.
         for (int i = 0; i < ac.tamanio(); i++) {
             Curso c = ac.obtener(i);
             imprimir("CURSO: " + c.getCodCurso() + " - " + c.getAsignatura());
-
             int cont = 0;
             for (int j = 0; j < am.tamanio(); j++) {
                 Matricula m = am.obtener(j);

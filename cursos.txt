@@ -1,3 +1,9 @@
+<<<<<<< HEAD
 1214;mate;0;12;12
 1215;mate;0;12;12
 1216;mate;0;12;12
+=======
+1234;Ingeneria de clamina;0;23;24
+2345;Parchador;1;25;28
+3456;Ingeneria de trenes;0;23;23
+>>>>>>> branch 'master' of https://github.com/jhonmendozaperez14-source/Proyecto-java.git
