@@ -1,6 +1,5 @@
-<<<<<<< HEAD
-=======
-202010001;Keiko;Arigato;61583452;100;978653421;1
-202010002;Hermes;Niño;64528723;60;978456321;1
-202010003;Porky;Iroshima;65389712;56;912875643;2
->>>>>>> branch 'master' of https://github.com/jhonmendozaperez14-source/Proyecto-java.git
+202010001;Cristian;Bacalla Vallejo;65421783;18;908748137;2
+202010002;Nataly;Estela perez;67980456;19;958352410;1
+202010003;Vanesa;Alfaro Vobadilla;67987235;17;980067234;1
+202010004;Lennon;Dias Zinarahua;67938254;18;900088536;1
+202010005;Luna;Alfaro Peralta;67887634;18;987555607;1
