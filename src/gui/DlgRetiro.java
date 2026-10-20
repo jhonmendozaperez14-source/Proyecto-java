@@ -253,7 +253,7 @@ public class DlgRetiro extends JDialog implements ActionListener {
 			return;
 		}
 		if (ar.buscarMatricula(m.getNumMatricula()) != null || a.getEstado() != MATRICULADO) {
-			error("Solo se puede retirar a un alumno con estado 1 (matriculado).\nEste alumno tiene estado "
+			error("Solo se puede retirar a un alumno con estado (matriculado).\nEste alumno tiene estado "
 					+ a.getEstadoTexto() + ".");
 			return;
 		}
@@ -278,7 +278,7 @@ public class DlgRetiro extends JDialog implements ActionListener {
 			return;
 		Alumno a = aa.buscar(m.getCodAlumno());
 		if (a == null || a.getEstado() != RETIRADO) {
-			error("Solo se puede cambiar el curso si el alumno tiene estado 2 (retirado).");
+			error("Solo se puede cambiar el curso si el alumno tiene estado (retirado).");
 			return;
 		}
 		try {
@@ -302,7 +302,7 @@ public class DlgRetiro extends JDialog implements ActionListener {
 		Alumno a = aa.buscar(m.getCodAlumno());
 		Retiro x = ar.buscarMatricula(m.getNumMatricula());
 		if (a == null || x == null || a.getEstado() != RETIRADO) {
-			error("Solo se puede cancelar un retiro si el alumno tiene estado 2 (retirado).");
+			error("Solo se puede cancelar un retiro si el alumno tiene estado (retirado).");
 			return;
 		}
 		int r = JOptionPane.showConfirmDialog(this, "¿Desea cancelar el retiro " + x.getNumRetiro() + " del alumno "
